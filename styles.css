@@ -1,36 +1,271 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<title>NutriSnap - Análise de Refeição</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Analisar Refeição</h1>
-    <input type="text" id="mealImage" placeholder="URL da refeição">
-    <button onclick="analyzeMeal()">Analisar</button>
-    <div id="mealResult"></div>
-  </div>
+/* ========================================================
+   NutriSnap - styles.css
+   Estilos globais para todas as páginas
+   Inclui: cores, fontes, animações, botões, inputs, menus
+   ======================================================== */
 
-  <script src="frontend.js"></script>
-  <script>
-    async function analyzeMeal(){
-      const url = document.getElementById("mealImage").value;
-      const res = await fetch("/api/meal/analyze",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({email:"teste@teste.com",image_url:url})
-      });
-      const data = await res.json();
-      document.getElementById("mealResult").innerHTML = `
-        <p>Calorias: ${data.calories} kcal</p>
-        <p>Proteínas: ${data.protein} g</p>
-        <p>Carbs: ${data.carbs} g</p>
-        <p>Gorduras: ${data.fat} g</p>
-        <p>${data.streakMessage}</p>
-      `;
-    }
-  </script>
-</body>
-</html>
+/* =======================
+   RESET & GLOBAL
+======================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: #1982C4;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #FF595E;
+}
+
+/* =======================
+   CONTAINERS
+======================= */
+.container {
+  width: 90%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease forwards;
+}
+
+/* =======================
+   HEADINGS
+======================= */
+h1 {
+  font-size: 2rem;
+  color: #1982C4;
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 20px 0 10px;
+  color: #8AC926;
+}
+
+/* =======================
+   INPUTS & SELECTS
+======================= */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #FF595E;
+  box-shadow: 0 0 10px rgba(255,89,94,0.3);
+}
+
+/* =======================
+   BUTTONS
+======================= */
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #1982C4, #6A4C93);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  background: linear-gradient(90deg, #FF595E, #FFCA3A);
+}
+
+/* =======================
+   NAVIGATION
+======================= */
+nav.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: #fff;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+nav .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1982C4;
+}
+
+nav .nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav .nav-menu li a {
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav .nav-menu li a:hover {
+  color: #FF595E;
+}
+
+/* =======================
+   SECTIONS
+======================= */
+section.plans-section, section.extra-payment {
+  margin: 30px 0;
+}
+
+#paymentLink a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 20px;
+  background: #8AC926;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+#paymentLink a:hover {
+  background: #FF595E;
+}
+
+/* =======================
+   LISTS
+======================= */
+ul {
+  list-style: none;
+  margin: 15px 0;
+  padding-left: 0;
+}
+
+ul li {
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+ul li:hover {
+  background: #e0e0e0;
+}
+
+/* =======================
+   STREAK
+======================= */
+.streak span {
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-right: 5px;
+  transition: 0.3s;
+}
+
+.streak span:hover {
+  transform: scale(1.3) rotate(10deg);
+  color: #FF595E;
+}
+
+/* =======================
+   MEAL RESULT
+======================= */
+#mealResult p {
+  background: #1982C4;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+/* =======================
+   CLICK ANIMATIONS
+======================= */
+.click-anim {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: radial-gradient(circle, #FF595E, #FFCA3A);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: pop 0.5s forwards;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* =======================
+   FLOATING TEXT
+======================= */
+#floatingText span {
+  display: inline-block;
+  color: #FF595E;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 2px;
+  transition: 0.5s;
+}
+
+/* =======================
+   ANIMAÇÕES GLOBAIS
+======================= */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+/* =======================
+   RESPONSIVO
+======================= */
+@media (max-width: 768px){
+  .container {
+    width: 95%;
+    margin: 30px auto;
+    padding: 20px;
+  }
+  nav.nav {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+  nav .nav-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
