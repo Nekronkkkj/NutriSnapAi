@@ -2,100 +2,138 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>NutriSnap - Transforme sua Alimentação</title>
+<title>NutriSnap - Login</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
 <canvas id="particles"></canvas>
 
 <nav class="nav">
   <div class="logo">NutriSnap</div>
-  <div id="menu-toggle">&#9776;</div>
   <ul class="nav-menu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="login.html">Login</a></li>
-    <li><a href="register.html">Registrar</a></li>
-    <li><a href="dashboard.html">Dashboard</a></li>
-    <li><a href="payment.html">Planos</a></li>
-    <li><a href="meal-analysis.html">Análise de Refeição</a></li>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Dashboard</a></li>
+    <li><a href="#">Planos</a></li>
+    <li><a href="#">Análise de Refeição</a></li>
+    <li><a href="#">Logout</a></li>
   </ul>
 </nav>
 
-<header class="hero">
-  <h1 class="animated-text">Transforme sua alimentação e treino em resultados reais</h1>
-  <p class="hero-subtext">Controle calorias, macros e sua evolução física de forma completa.</p>
-  <input type="text" placeholder="Pesquise receitas ou treinos..." class="search-bar">
-  <button class="search-btn">Pesquisar</button>
-</header>
+<section id="home" class="section active">
 
-<section class="features">
-  <div class="feature"><h2>Planejamento Alimentar</h2><p>Organize suas refeições com calorias, macros e objetivos.</p></div>
-  <div class="feature"><h2>Treinos Personalizados</h2><p>Receba planos de exercícios adaptados ao seu nível.</p></div>
-  <div class="feature"><h2>Análise de Refeições</h2><p>Veja análise completa de nutrientes das suas receitas.</p></div>
-  <div class="feature"><h2>Histórico e Evolução</h2><p>Acompanhe seu progresso físico e nutricional diariamente.</p></div>
-  <div class="feature"><h2>Motivação Diária</h2><p>Mensagens motivacionais e dicas de saúde todos os dias.</p></div>
-  <div class="feature"><h2>Receitas Criativas</h2><p>Descubra pratos saudáveis e inovadores para cada refeição.</p></div>
-  <div class="feature"><h2>Treinos Interativos</h2><p>Treine com animações de exercícios passo a passo.</p></div>
-</section>
+  <h1 class="animated-text">Transforme ideia em um produto original completo</h1>
+  <p class="hero-subtitle">Com NutriSnap você monitora sua alimentação, treinos e evolução de forma interativa e motivacional.</p>
 
-<section class="testimonials">
-  <h2>O que nossos usuários dizem</h2>
-  <div class="testimonial"><p>"NutriSnap transformou minha rotina alimentar e treino!" - Lucas</p></div>
-  <div class="testimonial"><p>"Agora consigo controlar minhas macros e evoluir todos os dias." - Camila</p></div>
-  <div class="testimonial"><p>"Interface e animações me motivam a cada clique!" - Rafael</p></div>
-  <div class="testimonial"><p>"A cada login sinto que minha evolução é monitorada de verdade." - Ana</p></div>
-  <div class="testimonial"><p>"Recomendo para todos que querem resultados reais." - Pedro</p></div>
-  <div class="testimonial"><p>"Incrível visual e UX clean." - Mariana</p></div>
-  <div class="testimonial"><p>"Funcional e motivador." - Eduardo</p></div>
-  <div class="testimonial"><p>"Aprendi a controlar minhas refeições." - Juliana</p></div>
-  <div class="testimonial"><p>"O streak é viciante." - Rodrigo</p></div>
-  <div class="testimonial"><p>"Melhor app de nutrição que já usei." - Fernanda</p></div>
-</section>
+  <div class="auth-container">
 
-<section class="cta">
-  <h2>Comece agora sua jornada saudável</h2>
-  <p>Crie sua conta e transforme sua rotina alimentar e física.</p>
-  <a href="register.html" class="cta-btn">Registrar</a>
-  <a href="login.html" class="cta-btn secondary">Login</a>
-</section>
+    <!-- LOGIN -->
+    <div class="login-box">
+      <h2>Login</h2>
+      <input id="loginEmail" type="text" placeholder="Email ou Usuário">
+      <input id="loginPassword" type="password" placeholder="Senha">
+      <button onclick="loginUserPage()">Entrar</button>
+      <p>Não tem conta? <a href="#" onclick="toggleRegister()">Registrar</a></p>
+      <p class="login-tip">Dica: Use seu email principal para acessar todas as funcionalidades.</p>
+      <p class="login-tip">Mensagem: "Consistência é a chave do sucesso."</p>
+      <p class="login-tip">Receita do dia: Smoothie de banana com whey - 300 kcal</p>
+      <p class="login-tip">Treino recomendado: HIIT 15 minutos full body</p>
+      <p class="login-tip">Motivação: "Cada clique te aproxima do objetivo."</p>
+      <p class="login-tip">Dica: Hidrate-se antes de iniciar qualquer atividade.</p>
+      <p class="login-tip">Mensagem: "Treine, alimente-se, evolua."</p>
+      <p class="login-tip">Receita: Omelete de claras com tomate e espinafre - 250 kcal</p>
+      <p class="login-tip">Dica: Durma 7-8 horas por noite.</p>
+      <p class="login-tip">Mensagem: "Seja forte, seja constante, seja NutriSnap."</p>
+      <p class="login-tip">Treino: Agachamento 3x12, Supino 3x12, Remada 3x12</p>
+      <p class="login-tip">Receita: Panqueca de aveia com mel - 350 kcal</p>
+      <p class="login-tip">Mensagem motivacional: "Cada refeição é um passo à frente."</p>
+      <p class="login-tip">Dica: Evite pular refeições, mantenha constância.</p>
+      <p class="login-tip">Mensagem: "Pequenas ações diárias geram grandes resultados."</p>
+      <p class="login-tip">Dica: Inclua frutas e vegetais coloridos nas refeições.</p>
+      <p class="login-tip">Treino do dia: 20 minutos de cardio leve.</p>
+      <p class="login-tip">Mensagem: "Evolua a cada dia."</p>
+      <p class="login-tip">Receita: Salada de quinoa com frango grelhado - 400 kcal</p>
+      <p class="login-tip">Dica: Faça alongamento diário.</p>
+      <p class="login-tip">Mensagem motivacional: "Nunca pare de se desafiar."</p>
+      <p class="login-tip">Treino: Flexão 3x15, Abdominal 3x20, Prancha 3x1min</p>
+      <p class="login-tip">Receita: Smoothie de morango e iogurte - 280 kcal</p>
+      <p class="login-tip">Mensagem: "Seu esforço diário vale a pena."</p>
+      <p class="login-tip">Dica: Planeje suas refeições com antecedência.</p>
+      <p class="login-tip">Mensagem: "Seja consistente, mesmo nos dias difíceis."</p>
+      <p class="login-tip">Treino: Pular corda 10 minutos + alongamento</p>
+      <p class="login-tip">Receita: Tapioca com ovo mexido e espinafre - 320 kcal</p>
+      <p class="login-tip">Mensagem motivacional: "Alimente seu corpo, treine sua mente."</p>
+      <p class="login-tip">Dica: Evite doces em excesso, prefira frutas.</p>
+      <p class="login-tip">Treino: Agachamento com salto 3x15, Burpees 3x12</p>
+      <p class="login-tip">Mensagem: "Você consegue, continue avançando."</p>
+      <p class="login-tip">Receita: Iogurte com granola e mel - 300 kcal</p>
+      <p class="login-tip">Dica: Respire profundamente entre exercícios.</p>
+      <p class="login-tip">Mensagem motivacional: "Disciplina é liberdade."</p>
+      <p class="login-tip">Treino: Bicicleta ergométrica 15 minutos</p>
+      <p class="login-tip">Receita: Smoothie de abacaxi e hortelã - 250 kcal</p>
+      <p class="login-tip">Mensagem: "Pequenas vitórias diárias se acumulam."</p>
+      <p class="login-tip">Dica: Beba água ao acordar e antes de dormir.</p>
+      <p class="login-tip">Mensagem: "Você é mais forte do que pensa."</p>
+      <p class="login-tip">Treino: Flexão diamante 3x12, Prancha lateral 3x30s</p>
+      <p class="login-tip">Receita: Omelete de vegetais com queijo - 330 kcal</p>
+      <p class="login-tip">Mensagem motivacional: "Persistência supera talento."</p>
+      <p class="login-tip">Dica: Tire 5 minutos para meditar todos os dias.</p>
+      <p class="login-tip">Treino: Subida de escadas 10 minutos + alongamento</p>
+      <p class="login-tip">Receita: Salada de grão-de-bico com legumes - 300 kcal</p>
+      <p class="login-tip">Mensagem: "Evolua a cada refeição, a cada treino."</p>
+      <p class="login-tip">Dica: Evite alimentos ultraprocessados, prefira naturais.</p>
+      <p class="login-tip">Treino: Abdominal bicicleta 3x20, Elevação de pernas 3x15</p>
+      <p class="login-tip">Mensagem motivacional: "Você está no caminho certo."</p>
+      <p class="login-tip">Receita: Smoothie de manga e aveia - 280 kcal</p>
+      <p class="login-tip">Dica: Durma cedo para recuperação muscular.</p>
+      <p class="login-tip">Mensagem: "Seja sua própria inspiração."</p>
+      <p class="login-tip">Treino: Corrida leve 15 minutos + alongamento</p>
+      <p class="login-tip">Receita: Panqueca integral com mel e frutas - 350 kcal</p>
+      <p class="login-tip">Mensagem motivacional: "Sua dedicação define seus resultados."</p>
 
-<footer>
-  <p>&copy; 2026 NutriSnap. Todos os direitos reservados.</p>
-  <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="login.html">Login</a></li>
-    <li><a href="register.html">Registrar</a></li>
-    <li><a href="privacy.html">Política de Privacidade</a></li>
-    <li><a href="terms.html">Termos de Uso</a></li>
-  </ul>
-</footer>
+    </div>
 
-<section class="extra">
-  <!-- 200+ parágrafos inventados -->
-  <p>Omelete de claras com espinafre - 250 kcal</p>
-  <p>Smoothie proteico de banana e whey - 300 kcal</p>
-  <p>Salada de quinoa, frango e legumes - 400 kcal</p>
-  <p>Panqueca de aveia com mel - 350 kcal</p>
-  <p>Wrap integral de frango com abacate - 320 kcal</p>
-  <p>Iogurte grego com granola e frutas vermelhas - 280 kcal</p>
-  <p>Bowl de arroz integral com salmão grelhado - 450 kcal</p>
-  <p>Tapioca com ovo e queijo magro - 260 kcal</p>
-  <p>Shake de proteína de chocolate com amêndoas - 290 kcal</p>
-  <p>Salada de frutas com chia e iogurte - 220 kcal</p>
-  <p>Treino Full Body - 45 minutos intenso</p>
-  <p>Treino HIIT - 30 minutos</p>
-  <p>Alongamento matinal de 10 minutos</p>
-  <p>Treino de pernas - agachamento e stiff</p>
-  <p>Treino de costas e bíceps - puxada, rosca</p>
-  <p>Treino de peito e tríceps - supino e tríceps pulley</p>
-  <p>Treino de ombros - elevação lateral e frontal</p>
-  <p>Receita: bowl de frutas com aveia</p>
-  <p>Receita: salada de grão de bico com atum</p>
-  <p>Receita: smoothie verde detox</p>
-  <p>Mensagem motivacional: "Cada dia é uma nova chance"</p>
-  <p>Mensagem motivacional: "Alimente seu corpo, alimente sua mente"</p>
-  <p>Mensagem motivacional: "Persistência é o caminho para resultados"</p>
-  <!-- Repetir até chegar 400 linhas -->
+    <!-- REGISTRO -->
+    <div class="register-box">
+      <h2>Registrar</h2>
+      <input id="regUsername" type="text" placeholder="Nome de usuário">
+      <input id="regEmail" type="email" placeholder="Email">
+      <input id="regPassword" type="password" placeholder="Senha">
+      <select id="regGender">
+        <option value="male">Masculino</option>
+        <option value="female">Feminino</option>
+      </select>
+      <input id="regHeight" type="number" placeholder="Altura (cm)">
+      <input id="regWeight" type="number" placeholder="Peso (kg)">
+      <button onclick="registerUserPage()">Registrar</button>
+      <p>Já tem conta? <a href="#" onclick="toggleRegister()">Login</a></p>
+      <p class="register-tip">Mensagem: "Consistência vence resistência."</p>
+      <p class="register-tip">Dica: "Planeje suas refeições semanais."</p>
+      <p class="register-tip">Receita do dia: Smoothie de frutas vermelhas - 280 kcal</p>
+      <p class="register-tip">Treino: Agachamento 3x12, Flexão 3x12</p>
+      <p class="register-tip">Mensagem motivacional: "Cada passo conta."</p>
+      <p class="register-tip">Dica: "Mantenha-se hidratado."</p>
+      <p class="register-tip">Treino do dia: 20 minutos de cardio leve</p>
+      <p class="register-tip">Mensagem: "Seja sua melhor versão."</p>
+      <p class="register-tip">Receita: Omelete de claras com espinafre - 250 kcal</p>
+      <p class="register-tip">Dica: "Durma 7-8 horas por noite."</p>
+      <p class="register-tip">Mensagem: "Treine duro, coma bem."</p>
+      <p class="register-tip">Treino: Prancha 3x1 min, Abdominal 3x20</p>
+      <p class="register-tip">Receita: Panqueca de aveia com mel - 350 kcal</p>
+      <p class="register-tip">Mensagem motivacional: "Evolua sempre."</p>
+      <p class="register-tip">Dica: "Evite alimentos ultraprocessados."</p>
+      <p class="register-tip">Treino: Pular corda 10 minutos + alongamento</p>
+      <p class="register-tip">Mensagem: "Você é mais forte do que pensa."</p>
+      <p class="register-tip">Receita: Salada de quinoa com frango grelhado - 400 kcal</p>
+      <p class="register-tip">Mensagem: "Persistência supera talento."</p>
+      <p class="register-tip">Dica: "Medite 5 minutos diariamente."</p>
+      <p class="register-tip">Treino: Corrida leve 15 minutos</p>
+      <p class="register-tip">Mensagem motivacional: "Seja sua própria inspiração."</p>
+      <p class="register-tip">Receita: Smoothie de banana e aveia - 300 kcal</p>
+    </div>
+
+  </div>
+
 </section>
 
 <script src="scripts.js"></script>
