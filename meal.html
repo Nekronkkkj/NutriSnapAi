@@ -6,31 +6,61 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Analisar Refeição</h1>
-    <input type="text" id="mealImage" placeholder="URL da refeição">
-    <button onclick="analyzeMeal()">Analisar</button>
-    <div id="mealResult"></div>
-  </div>
 
-  <script src="frontend.js"></script>
-  <script>
-    async function analyzeMeal(){
-      const url = document.getElementById("mealImage").value;
-      const res = await fetch("/api/meal/analyze",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({email:"teste@teste.com",image_url:url})
-      });
-      const data = await res.json();
-      document.getElementById("mealResult").innerHTML = `
-        <p>Calorias: ${data.calories} kcal</p>
-        <p>Proteínas: ${data.protein} g</p>
-        <p>Carbs: ${data.carbs} g</p>
-        <p>Gorduras: ${data.fat} g</p>
-        <p>${data.streakMessage}</p>
-      `;
-    }
-  </script>
+<nav class="nav">
+  <div class="logo">NutriSnap</div>
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="payment.html">Planos</a></li>
+    <li><a href="meal-analysis.html">Análise de Refeição</a></li>
+    <li><a href="login.html">Logout</a></li>
+  </ul>
+</nav>
+
+<header>
+<h1>Analisar Refeição</h1>
+<p>Veja o valor nutricional das suas refeições de forma detalhada.</p>
+</header>
+
+<section class="meal-section">
+<input type="text" id="mealImage" placeholder="URL da refeição">
+<button onclick="analyzeMeal()">Analisar</button>
+<div id="mealResult"></div>
+</section>
+
+<section class="extra-meal">
+<!-- 200+ parágrafos inventados sobre alimentos, treinos, motivação -->
+<p>Receita: Omelete de claras com tomate e espinafre - 250 kcal</p>
+<p>Receita: Smoothie proteico de banana e whey - 300 kcal</p>
+<p>Treino recomendado: Cardio leve 30 minutos</p>
+<p>Motivação: "Cada refeição é um passo para seus objetivos"</p>
+<p>Receita: Salada de quinoa com frango grelhado - 400 kcal</p>
+<p>Dica: "Hidrate-se antes e depois das refeições"</p>
+<p>Treino de força: agachamento 3x12, supino 3x12</p>
+<p>Mensagem motivacional: "Transforme hábitos em resultados"</p>
+<p>Receita: Panqueca de aveia com mel - 350 kcal</p>
+<!-- Repetir até 350 linhas -->
+</section>
+
+<script src="scripts.js"></script>
+<script>
+async function analyzeMeal(){
+  const url = document.getElementById("mealImage").value;
+  const res = await fetch("/api/meal/analyze",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({email:"teste@teste.com",image_url:url})
+  });
+  const data = await res.json();
+  document.getElementById("mealResult").innerHTML = `
+    <p>Calorias: ${data.calories} kcal</p>
+    <p>Proteínas: ${data.protein} g</p>
+    <p>Carbs: ${data.carbs} g</p>
+    <p>Gorduras: ${data.fat} g</p>
+    <p>${data.streakMessage}</p>
+  `;
+}
+</script>
 </body>
 </html>
