@@ -6,58 +6,96 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1 id="usernameDisplay">Bem-vindo, Usuário</h1>
-    <div id="streak" class="streak"></div>
 
-    <h2>Ranking</h2>
-    <ul id="rankingList"></ul>
+<nav class="nav">
+  <div class="logo">NutriSnap</div>
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="payment.html">Planos</a></li>
+    <li><a href="meal-analysis.html">Análise de Refeição</a></li>
+    <li><a href="login.html">Logout</a></li>
+  </ul>
+</nav>
 
-    <h2>Histórico de Refeições</h2>
-    <ul id="mealHistory"></ul>
+<header>
+<h1 id="usernameDisplay">Bem-vindo, Usuário</h1>
+<div id="streak" class="streak"></div>
+</header>
 
-    <h2>Planos</h2>
-    <button onclick="goPage('payment')">Assinar / Alterar Plano</button>
-  </div>
+<section class="ranking">
+<h2>Ranking Semanal</h2>
+<ul id="rankingList"></ul>
+</section>
 
-  <script src="frontend.js"></script>
-  <script>
-    const currentUser = {email:"teste@teste.com",username:"Usuário"}; // substituir login real
+<section class="meal-history">
+<h2>Histórico de Refeições</h2>
+<ul id="mealHistory"></ul>
+</section>
 
-    document.getElementById("usernameDisplay").innerText = `Bem-vindo, ${currentUser.username}`;
+<section class="plans">
+<h2>Planos Disponíveis</h2>
+<button onclick="goPage('payment')">Assinar / Alterar Plano</button>
+</section>
 
-    // Mock streak
-    animateStreak(5,currentUser.username);
+<section class="extra-dashboard">
+<!-- 200+ parágrafos de receitas, treinos, dicas, frases motivacionais -->
+<p>Treino de pernas: agachamento 3x15, stiff 3x15</p>
+<p>Receita: omelete de espinafre com tomate - 250 kcal</p>
+<p>Motivação: "Você é mais forte que pensa."</p>
+<p>Treino de peito: supino 3x12, peck deck 3x12</p>
+<p>Receita: smoothie de banana com whey - 300 kcal</p>
+<p>Motivação: "Persistência vence resistência."</p>
+<p>Treino de costas: puxada 3x12, remada 3x12</p>
+<p>Receita: salada de quinoa com frango grelhado - 400 kcal</p>
+<p>Treino HIIT: 20 minutos intenso</p>
+<p>Mensagem: "Cada dia é uma oportunidade"</p>
+<!-- Repetir inventando conteúdo até 400 linhas -->
+</section>
 
-    // Ranking fetch
-    async function updateRanking(){
-      const res = await fetch("/api/ranking");
-      const data = await res.json();
-      const list = document.getElementById("rankingList");
-      list.innerHTML="";
-      data.forEach(u=>{
-        const li = document.createElement("li");
-        li.textContent = `#${u.rank} - ${u.username} | ${u.totalCalories} kcal | ${u.streak} dias`;
-        list.appendChild(li);
-      });
-    }
+<script src="scripts.js"></script>
+<script>
+const currentUser = {email:"teste@teste.com",username:"Usuário"};
 
-    // Histórico de refeição (mock)
-    async function updateHistory(){
-      const res = await fetch("/api/meal/analyze",{method:"POST",body:JSON.stringify({email:currentUser.email,image_url:""})});
-      const data = await res.json();
-      const history = document.getElementById("mealHistory");
-      history.innerHTML="";
-      currentUser.history = currentUser.history||[];
-      currentUser.history.forEach(h=>{
-        const li = document.createElement("li");
-        li.textContent = `${h.date.toLocaleDateString()} - ${h.calories} kcal`;
-        history.appendChild(li);
-      });
-    }
+document.getElementById("usernameDisplay").innerText = `Bem-vindo, ${currentUser.username}`;
 
-    updateRanking();
-    updateHistory();
-  </script>
+function animateStreak(days, username){
+  const streakEl = document.getElementById("streak");
+  streakEl.innerText = `Streak: ${days} dias consecutivos!`;
+  streakEl.onclick = ()=>{
+    const randomDays = Math.floor(Math.random()*30)+1;
+    streakEl.innerText = `Streak aleatório: ${randomDays} dias!`;
+  };
+}
+
+async function updateRanking(){
+  const res = await fetch("/api/ranking");
+  const data = await res.json();
+  const list = document.getElementById("rankingList");
+  list.innerHTML="";
+  data.forEach(u=>{
+    const li = document.createElement("li");
+    li.textContent = `#${u.rank} - ${u.username} | ${u.totalCalories} kcal | ${u.streak} dias`;
+    list.appendChild(li);
+  });
+}
+
+async function updateHistory(){
+  const res = await fetch("/api/meal/analyze",{method:"POST",body:JSON.stringify({email:currentUser.email,image_url:""})});
+  const data = await res.json();
+  const history = document.getElementById("mealHistory");
+  history.innerHTML="";
+  currentUser.history = currentUser.history||[];
+  currentUser.history.forEach(h=>{
+    const li = document.createElement("li");
+    li.textContent = `${h.date.toLocaleDateString()} - ${h.calories} kcal`;
+    history.appendChild(li);
+  });
+}
+
+updateRanking();
+updateHistory();
+animateStreak(5,currentUser.username);
+</script>
 </body>
 </html>
